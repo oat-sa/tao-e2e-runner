@@ -16,4 +16,4 @@
  * Copyright (c) 2019 (original work) Open Assessment Technologies SA ;
  */
 
-import './login';
+import './auth';

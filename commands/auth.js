@@ -35,3 +35,10 @@ Cypress.Commands.add('login', (userType = 'admin') => {
         });
     });
 });
+
+Cypress.Commands.add('logout', () => {
+    cy.request({
+        method: 'GET',
+        url: urls.logout
+    });
+});
