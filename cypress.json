@@ -1,0 +1,12 @@
+{
+    "projectId": "kgqjfj",
+    "baseUrl": "http://tao.docker.localhost",
+    "video": false,
+    "fixturesFolder": "data",
+    "integrationFolder": "../package-tao",
+    "testFiles": "**/e2e/*.spec.js",
+    "pluginsFile": "plugins",
+    "screenshotsFolder": "screenshots",
+    "supportFile": "commands",
+    "defaultCommandTimeout": 10000
+}
