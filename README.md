@@ -98,3 +98,13 @@ You can also define environment variables with config file that should be called
 getLoginData(userType = 'admin'); // returns login data of requested user type
 login(userType = 'admin');        // calls login request and sets session
 ```
+
+## Best practices
+
+- Do not use _cy.wait(time)_, instead wait for API request or element appearance.
+- Do not write related tests, because if one fails, all will fail.
+- Do not use ui to create precondition of test, like login, because it is slow. Instead use ajax request, create command and use it in _before_ or _beforeEach_.
+- Select ui elements like a human does. Instead of _cy.get('form input.submit')_, use _cy.contains('Submit')_.
+- Do not store element as variable, like `const submitButton = cy.contains('button');`
+
+More: https://docs.cypress.io/guides/references/best-practices.html
