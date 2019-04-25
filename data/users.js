@@ -16,7 +16,7 @@
  * Copyright (c) 2019 (original work) Open Assessment Technologies SA ;
  */
 
-module.exports = {
+export default {
     admin: [
         {
             username: Cypress.env('adminUser') || 'admin',
