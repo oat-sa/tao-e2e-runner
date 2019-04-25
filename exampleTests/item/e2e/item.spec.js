@@ -40,6 +40,10 @@ describe('Items', () => {
         cy.wait('@editItem');
     });
 
+    afterEach(() => {
+        cy.logout();
+    })
+
     describe('Item creation, edit and delete', () => {
         it('items page loads', function() {
             cy.get(itemTreeSelector);
