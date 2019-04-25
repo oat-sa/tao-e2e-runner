@@ -1,33 +1,44 @@
 # tao-e2e-runner
 
-End to end test runner
+End to end test runner.
+
+The project is based on Cypress (https://www.cypress.io/)
 
 ## NPM Commands:
 
 Run all test:
 
 ```
-$ npm run test
+npm run test
 ```
 
 Run specific test:
 
 ```
-$ npm run test <testname>
+npm run test <testname>
 ```
 
-Run test on other domain:
+Run tests on other domain:
 
 _Default: http://tao.docker.localhost_
 
 ```
-$ CYPRESS_baseUrl=http://example.com npm run test
+CYPRESS_baseUrl=http://example.com npm run test
 ```
 
-Run example tests:
+Run tests from other location:
+
+_Default: exampleTests_
+```
+CYPRESS_integrationFolder=exampleTests npm run test
+```
+
+Modify pattern of test files:
+
+_Default: **/e2e/*.spec.js_
 
 ```
-$ CYPRESS_integrationFolder=exampleTests npm run test item
+CYPRESS_testFiles="**/e2e/*.spec.js" npm run test
 ```
 
 Open Cypress interface
@@ -71,19 +82,19 @@ You can also define environment variables with config file that should be called
 |-- data                # Global data
     |-- users.js        # User list
 |
+|-- exampleTests        # Example tests for TaoCE
 |-- plugins             # Plugin files
 |-- screenshots         # Screenshots about failed tests
 |-- scripts             # Helper script for the project
     |-- test.js         # Test runner
 |
 |-- cypress.json        # Cypress config file
-|-- Makefile            # Commands for project prepare
 ```
 
 ## Cypress Commands:
 
 ```js
 // Login
-getLoginData((userType = 'admin')); // returns login data of requested user type
-login((userType = 'admin')); // calls login request and sets session
+getLoginData(userType = 'admin'); // returns login data of requested user type
+login(userType = 'admin');        // calls login request and sets session
 ```
