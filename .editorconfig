@@ -1,0 +1,25 @@
+; .editorconfig
+
+root = true
+
+[**.js]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+trim_trailing_whitespace = true
+
+[**.json]
+indent_size = 2
+end_of_line = lf
+trim_trailing_whitespace = true
+
+[**.{html,tpl}]
+brace_style = expand
+end_of_line = lf
+trim_trailing_whitespace = true
+
+[**.scss]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+trim_trailing_whitespace = true
