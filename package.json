@@ -1,0 +1,30 @@
+{
+    "name": "@oat-sa/tao-e2e-runner",
+    "version": "0.1.0",
+    "description": "End to end test runner",
+    "main": "index.js",
+    "scripts": {
+        "test": "node scripts/test.js",
+        "lint": "eslint commands data exampleTests plugins scripts"
+    },
+    "keywords": [
+        "oat",
+        "e2e",
+        "testrunner"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/oat-sa/tao-e2e-runner.git"
+    },
+    "license": "GPL-2.0-only",
+    "bugs": {
+        "url": "https://github.com/oat-sa/browserslist-config-tao/issues"
+    },
+    "homepage": "https://github.com/oat-sa/browserslist-config-tao#readme",
+    "devDependencies": {
+        "cypress": "^3.2.0"
+    },
+    "peerDependencies": {
+        "eslint": "^5.16.0"
+    }
+}
