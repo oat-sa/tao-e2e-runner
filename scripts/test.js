@@ -20,19 +20,19 @@ const { exec } = require('child_process');
 
 const testName = process.argv[2];
 
-const cypressOptions = {};
+const cypressEnvironmentVariables = {};
 
 if (testName) {
-    cypressOptions.config = `testFiles=${testName}/**/*.spec.js`;
+    cypressEnvironmentVariables.testName = testName;
 }
 
-let command = 'node node_modules/.bin/cypress run ';
-command += Object.keys(cypressOptions)
-    .map(option => `--${option} ${cypressOptions[option]}`)
-    .join(' ');
+const command =
+    Object.keys(cypressEnvironmentVariables)
+        .map(variableName => `CYPRESS_${variableName}=${cypressEnvironmentVariables[variableName]}`)
+        .join(' ') + ' node node_modules/.bin/cypress run';
 
-console.log(command);
+console.log(command); // eslint-disable-line no-console
 const cypress = exec(command);
 
-cypress.stdout.on('data', data => console.log(data));
-cypress.stderr.on('data', data => console.error(data));
+cypress.stdout.on('data', data => console.log(data)); // eslint-disable-line no-console
+cypress.stderr.on('data', data => console.error(data)); // eslint-disable-line no-console

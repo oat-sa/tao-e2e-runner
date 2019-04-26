@@ -16,7 +16,21 @@
  * Copyright (c) 2019 (original work) Open Assessment Technologies SA ;
  */
 
+const path = require('path');
+
 module.exports = (on, config) => {
     // `on` is used to hook into various events Cypress emits
     // `config` is the resolved Cypress config
+
+    const { baseUrl, testName } = config.env;
+
+    if (baseUrl) {
+        config.baseUrl = baseUrl;
+    }
+
+    if (testName) {
+        config.testFiles = path.join('**', testName, config.testFiles);
+    }
+
+    return config;
 };

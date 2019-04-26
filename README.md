@@ -67,8 +67,10 @@ You can also define environment variables with config file that should be called
 
 ```json
 {
-    "adminUser": "admin",
-    "adminPass": "admin"
+    "adminUser" : "admin",
+    "adminPass" : "admin",
+    "baseUrl"   : "http://tao.docker.localhost",
+    "testName"  : "login"
 }
 ```
 
