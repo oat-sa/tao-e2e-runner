@@ -29,7 +29,7 @@ if (testName) {
 const command =
     Object.keys(cypressEnvironmentVariables)
         .map(variableName => `CYPRESS_${variableName}=${cypressEnvironmentVariables[variableName]}`)
-        .join(' ') + ' node node_modules/.bin/cypress run';
+        .join(' ') + ' npx cypress run';
 
 console.log(command); // eslint-disable-line no-console
 const cypress = exec(command);
