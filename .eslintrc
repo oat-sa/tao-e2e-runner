@@ -37,7 +37,6 @@
     "no-undefined": ["error"],
     "no-use-before-define": ["error", { "functions": false }],
     "semi": ["error", "always"],
-    "strict": ["error", "function"],
     "vars-on-top": ["error"]
   }
 }
