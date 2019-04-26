@@ -42,7 +42,7 @@ describe('Items', () => {
 
     afterEach(() => {
         cy.logout();
-    })
+    });
 
     describe('Item creation, edit and delete', () => {
         it('items page loads', function() {
