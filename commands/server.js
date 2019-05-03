@@ -16,31 +16,15 @@
  * Copyright (c) 2019 (original work) Open Assessment Technologies SA ;
  */
 
-import users from '../data/users';
-import urls from '../data/urls';
+Cypress.Commands.add('setupServer', () => {
+    cy.server({
+        whitelist: (xhr) => {
+            // this function receives the xhr object in question and
+            // will whitelist if it's a GET that appears to be a static resource
+            // return xhr.method === 'GET' && /\.(jsx?|html|css)(\?.*)?$/.test(xhr.url);
 
-Cypress.Cookies.debug(true);
-
-Cypress.Commands.add('getLoginData', (userType = 'admin') => users[userType][0]);
-
-Cypress.Commands.add('login', (userType = 'admin') => {
-    cy.getLoginData(userType).then(({ username, password }) => {
-        cy.request({
-            method: 'POST',
-            url: urls.login,
-            form: true,
-            body: {
-                login: username,
-                password: password,
-                loginForm_sent: 1
-            }
-        });
-    });
-});
-
-Cypress.Commands.add('logout', () => {
-    cy.request({
-        method: 'GET',
-        url: urls.logout
+            // TAO custom logic for whitelisting: add .tpl and .rdf files to default 'mute' list
+            return xhr.method === 'GET' && /\.(jsx?|html|css|tpl|rdf)(\?.*)?$/.test(xhr.url);
+        }
     });
 });

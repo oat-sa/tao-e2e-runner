@@ -24,20 +24,11 @@ describe('Items', () => {
     const newItemName = itemData.name;
     const modifiedItemName = `renamed ${itemData.name}`;
     const itemTreeSelector = '#tree-manage_items';
-    const mainContainer = '.main-container';
     const actionsContainer = '.tree-action-bar';
+    const contentContainer = '.content-container';
 
     beforeEach(() => {
-        cy.server({
-            whitelist: (xhr) => {
-                // this function receives the xhr object in question and
-                // will whitelist if it's a GET that appears to be a static resource
-                // return xhr.method === 'GET' && /\.(jsx?|html|css)(\?.*)?$/.test(xhr.url);
-
-                // TAO custom logic for whitelisting: add .tpl and .rdf files to default 'mute' list
-                return xhr.method === 'GET' && /\.(jsx?|html|css|tpl|rdf)(\?.*)?$/.test(xhr.url);
-            }
-        });
+        cy.setupServer();
         cy.route('POST', '**/editItem').as('editItem');
         cy.route('POST', '**/deleteItem').as('deleteItem');
 
@@ -50,6 +41,7 @@ describe('Items', () => {
             });
 
         cy.wait('@editItem', { timeout: 10000 }); // fails sometimes
+        cy.get(contentContainer).contains('Edit item').should('be.visible');
     });
 
     // afterEach(() => {
@@ -74,7 +66,9 @@ describe('Items', () => {
 
             cy.wait('@editItem').wait(300); // re-rendering time buffer :(
 
-            cy.get(mainContainer).within(() => {
+            cy.get(contentContainer).within(() => {
+                cy.contains('Edit Item').should('be.visible'); // doesn't guarantee latest content :(
+
                 cy.contains('label', 'Label')
                     .siblings('input')
                     .should('be.visible')
@@ -101,7 +95,9 @@ describe('Items', () => {
 
             cy.wait('@editItem').wait(300); // re-rendering time buffer :(
 
-            cy.get(mainContainer).within(() => {
+            cy.get(contentContainer).within(() => {
+                cy.contains('Edit Item').should('be.visible'); // doesn't guarantee latest content :(
+
                 cy.contains('label', 'Label')
                     .siblings('input')
                     .should('be.visible')
@@ -150,8 +146,8 @@ describe('Items', () => {
                     'Copy To',
                     'Move To',
                     'New item'
-                ], (text) => {
-                    cy.contains(text).should('exist').and('be.visible');
+                ], (buttonText) => {
+                    cy.contains(buttonText).should('exist').and('be.visible');
                 });
             });
 
@@ -171,8 +167,8 @@ describe('Items', () => {
                     'Copy To',
                     'Move To',
                     'New item'
-                ], (text) => {
-                    cy.contains(text).should('not.be.visible');
+                ], (buttonText) => {
+                    cy.contains(buttonText).should('not.be.visible');
                 });
             });
         });
