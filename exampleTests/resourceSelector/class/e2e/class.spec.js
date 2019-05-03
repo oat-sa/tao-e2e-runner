@@ -16,7 +16,9 @@
  * Copyright (c) 2019 (original work) Open Assessment Technologies SA ;
  */
 
-import itemData from './itemData';
+import itemData from '../../item/e2e/itemData';
+
+Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
 
 describe('Items', () => {
     const newItemName = itemData.name;
@@ -41,7 +43,7 @@ describe('Items', () => {
     });
 
     afterEach(() => {
-        cy.logout();
+        //cy.logout();
     });
 
     describe('Item creation, edit and delete', () => {

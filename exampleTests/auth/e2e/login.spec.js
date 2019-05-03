@@ -18,6 +18,8 @@
 
 import users from './users';
 
+Cypress.Cookies.debug(true); // now Cypress will log when it alters cookies
+
 context('Login', () => {
     beforeEach(() => {
         cy.fixture('urls').as('urls');

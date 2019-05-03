@@ -19,6 +19,8 @@
 import users from '../data/users';
 import urls from '../data/urls';
 
+Cypress.Cookies.debug(true);
+
 Cypress.Commands.add('getLoginData', (userType = 'admin') => users[userType][0]);
 
 Cypress.Commands.add('login', (userType = 'admin') => {
@@ -30,7 +32,7 @@ Cypress.Commands.add('login', (userType = 'admin') => {
             body: {
                 login: username,
                 password: password,
-                loginForm_sent: 1
+                loginForm_sent: 1,
             }
         });
     });

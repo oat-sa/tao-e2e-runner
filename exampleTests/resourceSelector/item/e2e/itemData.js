@@ -17,5 +17,5 @@
  */
 
 export default {
-    name: 'some item'
+    name: '_Temporary item from E2E test tool'
 };

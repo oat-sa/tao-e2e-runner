@@ -1,6 +1,6 @@
 {
     "projectId": "kgqjfj",
-    "baseUrl": "http://tao.docker.localhost",
+    "baseUrl": "http://localhost:8000",
     "video": false,
     "fixturesFolder": "data",
     "integrationFolder": "exampleTests",
