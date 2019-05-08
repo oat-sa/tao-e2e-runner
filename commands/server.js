@@ -16,5 +16,15 @@
  * Copyright (c) 2019 (original work) Open Assessment Technologies SA ;
  */
 
-import './auth';
-import './server';
+Cypress.Commands.add('setupServer', () => {
+    cy.server({
+        whitelist: (xhr) => {
+            // this function receives the xhr object in question and
+            // will whitelist if it's a GET that appears to be a static resource
+            // return xhr.method === 'GET' && /\.(jsx?|html|css)(\?.*)?$/.test(xhr.url);
+
+            // TAO custom logic for whitelisting: add .tpl and .rdf files to default 'mute' list
+            return xhr.method === 'GET' && /\.(jsx?|html|css|tpl|rdf)(\?.*)?$/.test(xhr.url);
+        }
+    });
+});
