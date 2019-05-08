@@ -110,3 +110,43 @@ login(userType = 'admin');        // calls login request and sets session
 - Do not store element as variable, like `const submitButton = cy.contains('button');`
 
 More: https://docs.cypress.io/guides/references/best-practices.html
+
+## Usage within TAO
+
+The only code that should be committed to this repo is generic code like server setup, login commands, urls, data etc.
+
+Your test code should be committed to the relevant TAO repo. Tests to do with general functionality of the platform can go in [tao-core](https://github.com/oat-sa/tao-core), while extension-specific tests might go in [taoItems](https://github.com/oat-sa/extension-tao-item), [taoGroups](https://github.com/oat-sa/extension-tao-group), etc.
+
+### Installation
+
+```
+cd tao/views/build
+npm i
+```
+
+### Local configuration file
+
+To enable local configuration, rename the included file `cypress.env.sample.json` to `cypress.env.json`.
+
+This file contains some configuration which can be used to override the project defaults defined in `cypress.json` of this project (which is not intended to be modified).
+
+Example cypress.env.json:
+
+```json
+{
+    "baseUrl": "http://localhost:8000",
+    "integrationFolder": "../../../../../..",
+    "testFiles": "tao/**/e2e/*.spec.js",
+    "adminUser": "admin",
+    "adminPass": "admin"
+}
+```
+
+`baseUrl` is the URL of the TAO instance you would like to test. It can be local or remote.
+
+The `integrationFolder` is designed to point Cypress from its install location (under `node_modules`), right back to the TAO project root, so it can then discover E2E tests in any extension.
+
+The `testFiles` path is set up to look for E2E tests anywhere inside the `integrationFolder`, but you should prefix this path with the folder name of a particular extension, e.g. `tao/views/js/e2e/**/*.spec.js`, to make the Cypress GUI more performant.
+
+- If you open Cypress with `npx cypress open`, the GUI will automatically find the tests defined in the above path.
+- If you open Cypress as an app, you will need to specify the folder `/tao/views/build/node_modules/@oat-sa/tao-e2e-runner` as the project root.
