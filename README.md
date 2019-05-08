@@ -119,16 +119,13 @@ Your test code should be committed to the relevant TAO repo. Tests to do with ge
 
 ### Installation
 
-```
-cd tao/views/build
-npm i
-```
+TODO: define this package in TAO's package.json so it can be installed by the usual `npm i`
 
 ### Local configuration file
 
-To enable local configuration, rename the included file `cypress.env.sample.json` to `cypress.env.json`.
+To enable local configuration for your TAO instance, rename the included file `cypress.env.sample.json` to `cypress.env.json`.
 
-This file contains some configuration which can be used to override the project defaults defined in `cypress.json` of this project (which is not intended to be modified).
+This file contains some configuration which can be used to override the project defaults defined in `cypress.json` in the root of this project (which is not intended to be modified).
 
 Example cypress.env.json:
 
@@ -146,7 +143,7 @@ Example cypress.env.json:
 
 The `integrationFolder` is designed to point Cypress from its install location (under `node_modules`), right back to the TAO project root, so it can then discover E2E tests in any extension.
 
-The `testFiles` path is set up to look for E2E tests anywhere inside the `integrationFolder`, but you should prefix this path with the folder name of a particular extension, e.g. `tao/views/js/e2e/**/*.spec.js`, to make the Cypress GUI more performant.
+The `testFiles` path is set up to look for E2E tests anywhere inside the `integrationFolder`, but you should prefix this path with the folder name of a particular extension, e.g. `tao/views/js/e2e/**/*.spec.js`, to make the Cypress GUI more performant. If you unset it, Cypress will scan for tests in all extensions (could be slow, but might be the desired behaviour for automated, headless testing).
 
 - If you open Cypress with `npx cypress open`, the GUI will automatically find the tests defined in the above path.
-- If you open Cypress as an app, you will need to specify the folder `/tao/views/build/node_modules/@oat-sa/tao-e2e-runner` as the project root.
+- If you open Cypress as an app, you will need to pick the folder `/tao/views/build/node_modules/@oat-sa/tao-e2e-runner` as the project root.
