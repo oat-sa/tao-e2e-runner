@@ -21,10 +21,22 @@ Cypress.Commands.add('setupServer', () => {
         whitelist: (xhr) => {
             // this function receives the xhr object in question and
             // will whitelist if it's a GET that appears to be a static resource
-            // return xhr.method === 'GET' && /\.(jsx?|html|css)(\?.*)?$/.test(xhr.url);
 
             // TAO custom logic for whitelisting: add .tpl and .rdf files to default 'mute' list
             return xhr.method === 'GET' && /\.(jsx?|html|css|tpl|rdf)(\?.*)?$/.test(xhr.url);
         }
     });
+
+    Cypress.Cookies.defaults({
+        whitelist: function(cookie) {
+            // if the function returns truthy
+            // then the cookie will not be cleared
+            // before each test runs
+
+            // Basically we want to stay logged in to TAO while we run our tests
+            // Unfortunately the session cookie name is dynamic
+            return cookie.name.startsWith('tao_');
+        }
+    });
 });
+
