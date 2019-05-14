@@ -28,7 +28,7 @@ Cypress.Commands.add('setupServer', () => {
     });
 
     Cypress.Cookies.defaults({
-        whitelist: function(cookie) {
+        whitelist: (cookie) => {
             // if the function returns truthy
             // then the cookie will not be cleared
             // before each test runs

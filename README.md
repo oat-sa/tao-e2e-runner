@@ -75,6 +75,7 @@ cy.setupServer();                    // configures the Cypress server for TAO co
 - Same goes for logging in.
 - Clean up any resources you created in an `afterEach()` hook so the TAO environment loads as expected next time. If a test fails, the cleanup may not run successfully, and you may have to clean it manually before you re-run.
 - Try to define all CSS selectors you need (ideally as few as possible) in a common file which each of your tests can `import`.
+- Ensure the selectors are reliable or will most likely not change
 
 In one of the server setup files (`/commands/server.js`), we have configured Cypress to whitelist all cookies starting with `tao_`. (The Cypress default behaviour is to clear cookies after every test.) This is a workaround to avoid logging in and out between every single test we run.
 
