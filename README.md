@@ -12,16 +12,17 @@ Your extension-specific test code should be committed to the relevant TAO repo. 
 
 ## Installation
 
-TODO: publish this on npm, and add definition in TAO's package.json so it can be installed by the usual `npm i`
-
-Until then, install using `npm link`:
+This package will be a dev-dependency of [tao-core](https://github.com/oat-sa/tao-core) from v34.3.0, so to install it within your instance:
 
 ```
-cd path/to/this/package
-npm link
-cd path/to/tao/instance
 cd tao/views/build
-npm link @oat-sa/tao-e2e-runner
+npm i
+```
+
+To install anywhere, manually:
+
+```
+npm install @oat-sa/tao-e2e-runner --save-dev
 ```
 
 ## Local configuration file
