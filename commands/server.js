@@ -39,4 +39,3 @@ Cypress.Commands.add('setupServer', () => {
         }
     });
 });
-

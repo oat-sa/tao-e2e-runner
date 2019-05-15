@@ -84,8 +84,8 @@ In one of the server setup files (`/commands/server.js`), we have configured Cyp
 - Do not use `cy.wait(time)`, instead wait for API request or element appearance.
 - Avoid connected tests, because if one fails, all will fail.
 - Do not use ui to create precondition of test, like login, because it is slow. Instead use ajax request, create command and use it in `before` or `beforeEach`.
-- Select ui elements like a human does. Instead of `cy.get('form input.submit')`, use `cy.contains('Submit')`.
-- Do not store element as variable, like `const submitButton = cy.contains('button');`
+- Avoid using `cy.contains({text})`. Preferred style is `cy.get()` with a reliable CSS selector (such as data-control attribute, name or id).
+- Do not store element as variable, like `const submitButton = cy.get('button');`
 
 More: https://docs.cypress.io/guides/references/best-practices.html
 
