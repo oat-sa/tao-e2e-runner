@@ -22,7 +22,15 @@ module.exports = (on, config) => {
     // `on` is used to hook into various events Cypress emits
     // `config` is the resolved Cypress config
 
-    const { baseUrl, testName } = config.env;
+    const { integrationFolder, testFiles, baseUrl, testName } = config.env;
+
+    if (integrationFolder) {
+        config.integrationFolder = integrationFolder;
+    }
+
+    if (testFiles) {
+        config.testFiles = testFiles;
+    }
 
     if (baseUrl) {
         config.baseUrl = baseUrl;

@@ -17,3 +17,4 @@
  */
 
 import './auth';
+import './server';
