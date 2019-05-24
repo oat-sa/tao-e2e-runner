@@ -1,6 +1,6 @@
 {
     "name": "@oat-sa/tao-e2e-runner",
-    "version": "0.1.0",
+    "version": "0.2.1",
     "description": "End to end test runner",
     "main": "index.js",
     "scripts": {
@@ -18,9 +18,9 @@
     },
     "license": "GPL-2.0-only",
     "bugs": {
-        "url": "https://github.com/oat-sa/browserslist-config-tao/issues"
+        "url": "https://github.com/oat-sa/tao-e2e-runner/issues"
     },
-    "homepage": "https://github.com/oat-sa/browserslist-config-tao#readme",
+    "homepage": "https://github.com/oat-sa/tao-e2e-runner#readme",
     "devDependencies": {
         "cypress": "^3.2.0"
     },
