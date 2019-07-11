@@ -63,7 +63,7 @@ Some utility commands have been set up already. We may add to them in future.
 // commands/auth.js
 cy.getLoginData(userType = 'admin'); // returns login data of requested user type
 cy.login(userType = 'admin');        // calls login request and sets session
-cy.guestLogin();                     // issues guest request
+cy.guestLogin();                     // issues guest login
 cy.logout();                         // issues logout request
 
 // commands/server.js
