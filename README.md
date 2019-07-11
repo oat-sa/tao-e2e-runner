@@ -63,6 +63,7 @@ Some utility commands have been set up already. We may add to them in future.
 // commands/auth.js
 cy.getLoginData(userType = 'admin'); // returns login data of requested user type
 cy.login(userType = 'admin');        // calls login request and sets session
+cy.guestLogin();                     // issues guest request
 cy.logout();                         // issues logout request
 
 // commands/server.js
@@ -151,7 +152,7 @@ const foo = Cypress.env('foo');
 ```
 |-- commands            # Global commands
     |-- index.js        # Entry point
-    |-- login.js        # Login command
+    |-- auth.js         # Authentication commands
     |-- server.js       # Server setup
 |
 |-- data                # Global data
