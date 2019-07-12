@@ -28,6 +28,6 @@
         "eslint": "^5.16.0"
     },
     "browserslist": [
-      "last 2 chrome versions"
+        "last 2 chrome versions"
     ]
 }
