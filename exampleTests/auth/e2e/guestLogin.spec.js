@@ -16,33 +16,21 @@
  * Copyright (c) 2019 (original work) Open Assessment Technologies SA ;
  */
 
-import users from '../data/users';
-import urls from '../data/urls';
+import users from './users';
 
-Cypress.Commands.add('getLoginData', (userType = 'admin') => users[userType][0]);
-
-Cypress.Commands.add('login', (userType = 'admin') => {
-    cy.getLoginData(userType).then(({ username, password }) => {
-        cy.request({
-            method: 'POST',
-            url: urls.login,
-            form: true,
-            body: {
-                login: username,
-                password: password,
-                loginForm_sent: 1
-            }
-        });
+context('Guest Login', () => {
+    beforeEach(() => {
+        cy.fixture('urls').as('urls');
     });
-});
 
-Cypress.Commands.add('guestLogin', () => {
-    cy.visit(urls.guestLogin);
-});
+    it('goes to login page', function() {
+        cy.visit(this.urls.root);
+        cy.location('pathname').should('eq', this.urls.login);
+    });
 
-Cypress.Commands.add('logout', () => {
-    cy.request({
-        method: 'GET',
-        url: urls.logout
+    it('successfull guest login', function() {
+        cy.visit(this.urls.login);
+        cy.contains('Guest access').click();
+        cy.location('pathname').should('eq', this.urls.deliveryIndex);
     });
 });

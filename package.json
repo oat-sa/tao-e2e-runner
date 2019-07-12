@@ -1,6 +1,6 @@
 {
     "name": "@oat-sa/tao-e2e-runner",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "description": "End to end test runner",
     "main": "index.js",
     "scripts": {
@@ -26,5 +26,8 @@
     },
     "peerDependencies": {
         "eslint": "^5.16.0"
-    }
+    },
+    "browserslist": [
+        "last 2 chrome versions"
+    ]
 }
