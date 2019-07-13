@@ -18,3 +18,5 @@
 
 import './auth';
 import './server';
+
+import 'cypress-file-upload';
