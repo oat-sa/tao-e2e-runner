@@ -46,3 +46,10 @@ Cypress.Commands.add('logout', () => {
         url: urls.logout
     });
 });
+
+Cypress.Commands.add('guestLogout', () => {
+    cy.request({
+        method: 'GET',
+        url: urls.guestLogout
+    });
+});

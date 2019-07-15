@@ -4,5 +4,6 @@
     "login": "/tao/Main/login",
     "guestLogin": "/taoDeliveryRdf/Guest/guest",
     "deliveryIndex": "/taoDelivery/DeliveryServer/index",
-    "logout": "/tao/Main/logout"
+    "logout": "/tao/Main/logout",
+    "guestLogout": "/taoDelivery/DeliveryServer/logout"
 }
