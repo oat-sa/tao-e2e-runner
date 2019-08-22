@@ -4,6 +4,8 @@
 
 This guide makes use of the `cypress/included` public Docker image, which contains Node, npm, and the Cypress package installed globally.
 
+The E2E tests will be run headlessly, although screenshots of test failures will still be saved into `screenshots/`
+
 The TAO instance you test against can theoretically be online, local or Dockerised. The most reliable results will come from a Dockerised instance, so that is what this guide focuses on.
 
 ## 1. docker-compose approach
@@ -14,7 +16,7 @@ The TAO instance you test against can theoretically be online, local or Dockeris
 
 In this example we're using the basic stack of <https://github.com/ekkinox/tao-docker> which has containers for nginx, phpfpm, and mariadb. You need to bring up your stack and install TAO within the phpfpm container to get started.
 
-If your stack is different, see the CLI approach below.
+If your existing stack is different, see the CLI approach below.
 
 Intended project structure:
 
@@ -58,10 +60,10 @@ Don't forget to set the TAO-specific values, some tests are likely to need them:
 
 All these values can be passed to Cypress in several ways:
 
-1. as part of the `cypress.json` configuration
-2. as part of a `cypress.env.json` file which overrides the default values
+1. as part of the main `cypress.json` configuration
+2. (*recommended*) as part of a `cypress.env.json` file which overrides the default values
 3. as config parameters after the cypress command: `cypress run --config baseUrl=http://localhost:8888`
-4. as environment variables before running the command: `CYPRESS_baseUrl=http://localhost:8888 cypress run`
+4. as environment variables before running the command: `CYPRESS_baseUrl=http://localhost:8888 npx cypress run`
 5. as environment variable passthrough parameters in a Docker command: `-e CYPRESS_baseUrl=http://localhost:8888`
 6. (*recommended*) as environment variables in your `docker-compose.yml` container definition
 
@@ -84,7 +86,7 @@ Run the following command to build the defined containers, bring them up, stop t
 
 If the stack defined in `docker-compose.yml` doesn't meet your needs, and you just want to run the Cypress container on its own, that can be done using a single command:
 
-Assuming that your stack is running on the network `docker_tao_network`, and you are in `/tao/views/build/node_modules/@oat-sa/tao-e2e-runner`:
+Assuming that your TAO stack is running on the network `docker_tao_network`, and you are in `/tao/views/build/node_modules/@oat-sa/tao-e2e-runner`:
 
 ```sh
 docker run -it \
@@ -107,7 +109,7 @@ Breakdown of the above:
 -e CYPRESS_baseUrl='http://tao_nginx'    # pass this environment variable through
 -e CYPRESS_integrationFolder='../var/www/html/tao/views/js' # pass this environment variable through
 -e CYPRESS_testFiles='**/*.spec.js'      # pass this environment variable through
---network tao-docker-cypress_tao_network # make this container join the network the webserver is on
+--network docker_tao_network             # make this container join the network the webserver is on
 cypress/included:3.4.0                   # dockerhub image name & tag
 ```
 
@@ -119,7 +121,9 @@ These parameters obviously depend on the setup of the Dockerised TAO you are tes
 
 Your URLs or hostnames might be misconfigured.
 
-The Cypress `baseUrl` should be equal to the web server's container name, which should also match the `ROOT_URL` defined in `/config/generis.conf.php` of your TAO instance. For example, in the provided `docker-compose.yml` all three values are set to `tao_nginx`. Other approaches such as `localhost`, `127.0.0.1` or fixed IP addresses will be more problematic.
+The Cypress `baseUrl` should be equal to the web server's `container_name`, which should also match the `ROOT_URL` defined in `/config/generis.conf.php` of your TAO instance.
+
+For example, in the provided `docker-compose.yml` all three values are set to `tao_nginx`. Other approaches such as `localhost`, `127.0.0.1` or fixed IP addresses are not recommended as they will be more problematic.
 
 ### No tests found
 
