@@ -93,6 +93,7 @@ docker run -it \
 -w /cypress \
 -e CYPRESS_baseUrl='http://tao_nginx' \
 -e CYPRESS_integrationFolder='../var/www/html/tao/views/js' \
+-e CYPRESS_testFiles='**/*.spec.js' \
 --network tao-docker-cypress_tao_network \
 cypress/included:3.4.0
 ```
@@ -105,6 +106,7 @@ Breakdown of the above:
 -w /cypress                              # the working directory in the container, where commands are run
 -e CYPRESS_baseUrl='http://tao_nginx'    # pass this environment variable through
 -e CYPRESS_integrationFolder='../var/www/html/tao/views/js' # pass this environment variable through
+-e CYPRESS_testFiles='**/*.spec.js'      # pass this environment variable through
 --network tao-docker-cypress_tao_network # make this container join the network the webserver is on
 cypress/included:3.4.0                   # dockerhub image name & tag
 ```
