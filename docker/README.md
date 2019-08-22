@@ -84,7 +84,7 @@ Run the following command to build the defined containers, bring them up, stop t
 
 If the stack defined in `docker-compose.yml` doesn't meet your needs, and you just want to run the Cypress container on its own, that can be done using a single command:
 
-Assuming you are in `/tao/views/build/node_modules/@oat-sa/tao-e2e-runner`:
+Assuming that your stack is running on the network `docker_tao_network`, and you are in `/tao/views/build/node_modules/@oat-sa/tao-e2e-runner`:
 
 ```sh
 docker run -it \
@@ -94,7 +94,7 @@ docker run -it \
 -e CYPRESS_baseUrl='http://tao_nginx' \
 -e CYPRESS_integrationFolder='../var/www/html/tao/views/js' \
 -e CYPRESS_testFiles='**/*.spec.js' \
---network tao-docker-cypress_tao_network \
+--network docker_tao_network \
 cypress/included:3.4.0
 ```
 
@@ -125,7 +125,7 @@ The Cypress `baseUrl` should be equal to the web server's container name, which 
 
 Your `integrationFolder` + `testFiles` path is not resolving where you expected.
 
-Make sure you have this repo mapped into the `cypress/included` container and the working directory set. Unset any overrides for the above config values, and they should fall back to `exampleTests` + `**/e2e/*.spec.js`. If these local tests are able to be run, it's just a case of working out the correct relative path.
+Make sure you have the `tao-e2e-runner` folder mapped into the `cypress/included` container and the working directory set. Unset any overrides for the above config values, and they should fall back to `exampleTests` + `**/e2e/*.spec.js`. If these local tests are able to be run, it's just a case of working out the correct relative path for the other tests.
 
 ### Timeouts
 
