@@ -1,0 +1,73 @@
+version: '2'
+
+services:
+  tao_nginx:
+    container_name: tao_nginx
+    image: nginx:stable
+    networks:
+      - tao_network
+    ports:
+      - "80:80"
+    volumes_from:
+      - tao_phpfpm
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:cached
+    working_dir: /etc/nginx/conf.d
+    logging:
+      driver: "none"
+
+  tao_phpfpm:
+    container_name: tao_phpfpm
+    build:
+      context: ./phpfpm
+    expose:
+      - "9000"
+    networks:
+      - tao_network
+    volumes:
+      - ../../../../../../../:/var/www/html:cached
+    working_dir: /var/www/html
+
+  tao_mariadb:
+    container_name: tao_mariadb
+    image: mariadb:latest
+    networks:
+      - tao_network
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: r00t
+      MYSQL_USER: tao
+      MYSQL_PASSWORD: tao
+      MYSQL_DATABASE: tao
+    volumes:
+      - tao_mariadb_data:/var/lib/mysql:cached
+    logging:
+      driver: "none"
+
+  tao_e2e:
+    container_name: tao_e2e
+    image: "cypress/included:3.4.0"
+    depends_on:
+      - tao_nginx
+      - tao_phpfpm
+      - tao_mariadb
+    environment:
+      - CYPRESS_baseUrl=http://tao_nginx # ROOT_URL in TAO generis.conf.php has to match this
+      - CYPRESS_integrationFolder=../var/www/html/taoQtiTest/views/js/e2e
+      - CYPRESS_testFiles=**/*.spec.js
+    networks:
+      - tao_network
+    working_dir: /cypress
+    volumes:
+      - ../:/cypress
+    volumes_from:
+      - tao_phpfpm
+
+volumes:
+  tao_mariadb_data:
+    driver: local
+
+networks:
+  tao_network:
+    driver: bridge

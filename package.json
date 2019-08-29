@@ -1,6 +1,6 @@
 {
     "name": "@oat-sa/tao-e2e-runner",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "description": "End to end test runner",
     "main": "index.js",
     "scripts": {
@@ -22,7 +22,7 @@
     },
     "homepage": "https://github.com/oat-sa/tao-e2e-runner#readme",
     "devDependencies": {
-        "cypress": "^3.2.0",
+        "cypress": "^3.4.1",
         "cypress-file-upload": "^3.2.1"
     },
     "peerDependencies": {
