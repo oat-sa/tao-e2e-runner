@@ -22,7 +22,7 @@
     },
     "homepage": "https://github.com/oat-sa/tao-e2e-runner#readme",
     "devDependencies": {
-        "cypress": "^3.4.1",
+        "cypress": "^3.8.3",
         "cypress-file-upload": "^3.2.1"
     },
     "peerDependencies": {
