@@ -4,6 +4,7 @@
     "description": "End to end test runner",
     "main": "index.js",
     "scripts": {
+        "open": "npx cypress open",
         "test": "node scripts/test.js",
         "lint": "eslint commands data exampleTests plugins scripts"
     },
