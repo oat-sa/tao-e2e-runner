@@ -1,5 +1,9 @@
 # tao-e2e-runner
 
+## !!! DEPRECATED / ARCHIVED REPOSITORY !!!
+
+### The package has been replaced by [oat-sa/e2e-runner](https://github.com/oat-sa/e2e-runner). TAO specific part can be found at [tao-core/views/cypress](https://github.com/oat-sa/tao-core/tree/master/views/cypress).
+
 End-to-end test runner for use within TAO.
 
 The project is based on Cypress (https://www.cypress.io/)
